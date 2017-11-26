@@ -16,19 +16,19 @@ for documents in list_of_documents:
     with open(documents, 'r', encoding="utf8") as textFile:
 
             # holds the complete sentence.
-            completeSentence = ""
+            complete_sentence = ""
             # list of sentences
-            storedSentences = []
+            stored_sentences = []
 
             # get a specific line of a specific file
-            for line in textFile:
+            for line in text_file:
                 # step one: get all the sentences and match to a particular word.
 
                 # split sentence based on punctuations that ends a sentence.
                 for sentence in line.lower().split('.') or line.lower().split('?') or line.lower().split(';'):
                     if sentence and not sentence.isspace():
-                        storedSentences.append(sentence)
-                        completeSentence = sentence
+                        stored_sentences.append(sentence)
+                        complete_sentence = sentence
 
                         # remove all punctuations and make all the words lowercase
                         translator = line.maketrans('', '', string.punctuation)
@@ -41,13 +41,13 @@ for documents in list_of_documents:
                             else:
                                 word_count[word] = 1
 
-                            if word in completeSentence:
-                                if not any(completeSentence in s for s in word_sentences[word]):
-                                    word_sentences[word].append(completeSentence)
+                            if word in complete_sentence:
+                                if not any(complete_sentence in s for s in word_sentences[word]):
+                                    word_sentences[word].append(complete_sentence)
                                 if not any(documents in s for s in word_documents[word]):
                                     word_documents[word].append(documents)
 
-                        completeSentence = ""
+                        complete_sentence = ""
 
 
 
